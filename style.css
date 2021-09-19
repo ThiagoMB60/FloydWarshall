@@ -57,10 +57,11 @@ body {
 }
 
 table,
-th {
+th,
+td {
   border: 1px solid;
 }
-#inputTable {
+table {
   position: relative;
   left: 50%;
   transform: translateX(-50%);
