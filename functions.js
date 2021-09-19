@@ -43,18 +43,26 @@ function criaTableHeader(tablePai, numVertices) {
 function createCellsBody(rowPai, numVertices, linha) {
   for (var i = -1; i < numVertices; i++) {
     var row = document.getElementById(rowPai);
-    var td = document.createElement("td");
-
-    row.appendChild(td);
 
     if (i == -1) {
+      var th = document.createElement("th");
+      row.appendChild(th);
       var vertice = "v" + linha;
-      td.id = row.id + vertice;
+      th.id = row.id + vertice;
       vertice = document.createTextNode(vertice);
+      th.appendChild(vertice);
+      //***************************** */
     } else {
-      vertice = document.createTextNode(1000000);
+      var td = document.createElement("td");
+      row.appendChild(td);
+      var input = document.createElement("input");
+      input.style.width = "60px";
+      input.type = "number";
+      input.value = 1000;
+      input.min = "0";
+      input.max = "1000";
+      td.appendChild(input);
     }
-    td.appendChild(vertice);
   }
 }
 
@@ -100,11 +108,12 @@ function confirmation(divPai, numVertices) {
       "O número de vértices digitado é " + numVertices + ", deseja confirmar?"
     )
   ) {
+    document.getElementById(divPai).innerHTML = "";
     criaObjGrafo(numVertices);
     criaTabela(
       divPai,
       numVertices,
-      "Por favor, informe os valores para a tabela de adjacencia a seguir:"
+      "Por favor, informe os valores para a tabela de adjacencia a seguir: (ATENÇÃO: Sabe-se que a maior distancia entre um par de vértices é INFINITO, então para representar essa distancia foi definido o valor '1000')."
     );
   }
 }
